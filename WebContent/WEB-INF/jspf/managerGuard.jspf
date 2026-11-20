@@ -1,0 +1,6 @@
+<% 
+    if(!manager(currentUser)) {
+        response.sendRedirect(request.getContextPath()+"/view5/Member5/LoginFrm5.jsp");
+        return;
+    }
+%>

@@ -1,0 +1,16 @@
+
+<%@ page pageEncoding="UTF-8" %>
+
+<header class="site-header">
+    <nav>
+        <% if (currentUser == null) { %>
+        <a href="<%= request.getContextPath() %>/view5/Member5/LoginFrm5.jsp">
+            Đăng nhập
+        </a>
+        <% } else { %>
+        <a href="<%= request.getContextPath() %>/view5/Member5/Logout5.jsp">
+            Đăng xuất
+        </a>
+        <% } %>
+    </nav>
+</header>

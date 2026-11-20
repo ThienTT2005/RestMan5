@@ -1,0 +1,65 @@
+
+<%@ page pageEncoding="UTF-8" %>
+
+<%@ page import="model5.*" %>
+<%@ page import="java.util.*" %>
+<%@ page import="java.math.*" %>
+<%@ page import="java.time.*" %>
+<%@ page import="java.time.format.*" %>
+<%@ page import="java.sql.*" %>
+
+<%!
+    public String esc(Object value) {
+        if (value == null) {
+            return "";
+        }
+
+        return String.valueOf(value)
+                .replace("&", "&amp;")
+                .replace("<", "&lt;")
+                .replace(">", "&gt;")
+                .replace("\"", "&quot;")
+                .replace("'", "&#39;");
+    }
+
+    public String money(BigDecimal value) {
+        if (value == null) {
+            return "0 đ";
+        }
+
+        String formatted = String.format(
+                java.util.Locale.forLanguageTag("vi-VN"),
+                "%,.0f",
+                value
+        );
+
+        return formatted + " đ";
+    }
+
+    public String date(Timestamp timestamp) {
+        if (timestamp == null) {
+            return "—";
+        }
+
+        return timestamp.toLocalDateTime().format(
+                DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")
+        );
+    }
+
+    public boolean manager(Member5 user) {
+        return user instanceof Staff5
+                && (
+                "Manager".equalsIgnoreCase(
+                        ((Staff5) user).getPosition()
+                )
+                        || "Quản lý".equalsIgnoreCase(
+                        ((Staff5) user).getPosition()
+                )
+        );
+    }
+%>
+
+<%
+    Member5 currentUser =
+            (Member5) session.getAttribute("user5");
+%>

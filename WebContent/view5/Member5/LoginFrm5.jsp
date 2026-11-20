@@ -96,10 +96,6 @@
             Đăng nhập
         </h1>
 
-        <p class="login-subtitle">
-            Hệ thống quản lý nhà hàng RestMan5
-        </p>
-
         <%-- Thông báo khi đăng nhập thất bại --%>
         <% if (!errorMessage.isEmpty()) { %>
 

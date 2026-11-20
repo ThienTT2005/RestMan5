@@ -14,10 +14,7 @@
     <form class="search-form"
           action="<%= request.getContextPath() %>/view5/Customer5/SearchListFrm5.jsp"
           method="get"
-          onsubmit="if (!this.keyword.value.trim()) {
-              alert('Vui lòng nhập từ khóa tìm kiếm!');
-              return false;
-          }">
+          onsubmit="return validateSearch5();">
 
         <label for="keyword">
             Từ khóa:
@@ -28,7 +25,6 @@
                 type="text"
                 name="keyword"
                 placeholder="Nhập từ khóa (ví dụ: Kimbap)"
-                required
         >
 
         <button type="submit">
@@ -38,5 +34,20 @@
     </form>
 
 </section>
+
+<script>
+    function validateSearch5() {
+        const keywordInput = document.getElementById("keyword");
+        const keyword = keywordInput.value.trim();
+
+        if (keyword === "") {
+            alert("Vui lòng nhập từ khóa tìm kiếm");
+            keywordInput.focus();
+            return false;
+        }
+
+        return true;
+    }
+</script>
 
 <%@ include file="/WEB-INF/jspf/end.jspf" %>
